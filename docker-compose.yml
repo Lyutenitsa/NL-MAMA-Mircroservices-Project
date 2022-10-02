@@ -1,0 +1,37 @@
+services:
+  sample_service_1:
+    image: sample_service_1
+    container_name: sample_service_1
+    build: ./Backend/SampleService 1
+    depends_on:
+      - sample_service_1_db
+
+  sample_service_1_db:
+    image: postgres:14.2-alpine
+    container_name: sample_service_1_db
+    volumes:
+      - postgres_data_1:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=sample_service_1_usename
+      - POSTGRES_PASSWORD=sample_service_1_db_password
+      - POSTGRES_DB=sample_service_1_db
+    ports:
+      - "5436:5432"
+
+  sample_service_2:
+    image: sample_service_2
+    container_name: sample_service_2
+    build: ./Backend/SampleService 2
+    depends_on:
+      - sample_service_2_db
+
+  sample_service_2_db:
+    image: postgres:12.1-alpine
+    volumes:
+      - postgres_data_2:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=sample_service_2_usename
+      - POSTGRES_PASSWORD=sample_service_2_db_password
+      - POSTGRES_DB=sample_service_2_db
+    ports:
+      - "5435:5432"
