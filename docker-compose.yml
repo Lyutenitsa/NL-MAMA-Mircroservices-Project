@@ -9,8 +9,7 @@ services:
   sample_service_1_db:
     image: postgres:14.2-alpine
     container_name: sample_service_1_db
-    volumes:
-      - postgres_data_1:/var/lib/postgresql/data/
+
     environment:
       - POSTGRES_USER=sample_service_1_usename
       - POSTGRES_PASSWORD=sample_service_1_db_password
@@ -27,8 +26,8 @@ services:
 
   sample_service_2_db:
     image: postgres:12.1-alpine
-    volumes:
-      - postgres_data_2:/var/lib/postgresql/data/
+    container_name: sample_service_1_db
+
     environment:
       - POSTGRES_USER=sample_service_2_usename
       - POSTGRES_PASSWORD=sample_service_2_db_password
