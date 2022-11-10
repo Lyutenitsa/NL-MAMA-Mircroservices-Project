@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 from app.routes import article_endpoints
 
-app = FastAPI()
+app = FastAPI(openapi_url="/articles/openapi.json",
+              docs_url="/articles/docs")
 
 
 @app.get("/")
