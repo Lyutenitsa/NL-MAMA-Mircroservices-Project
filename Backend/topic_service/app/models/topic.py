@@ -5,7 +5,7 @@ import uuid
 
 
 class Topic(Base):
-    __tablename__ = "articles"
+    __tablename__ = "topics"
     
     id = Column(
         UUID(as_uuid=True), index=True,
