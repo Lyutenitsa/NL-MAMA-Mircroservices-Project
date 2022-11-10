@@ -5,11 +5,12 @@ Revises:
 Create Date: 2022-11-09 23:14:50.452651
 
 """
-import uuid
 
 from alembic import op
 import sqlalchemy as sa
 from sqlalchemy.dialects.postgresql import UUID
+import uuid
+
 
 # revision identifiers, used by Alembic.
 revision = '37e3eb26a2b9'
