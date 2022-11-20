@@ -21,26 +21,28 @@ testArticleService:
   tags: 
     - CI/CD
   script:
-    - echo This is test pipepline for article_service 
+    - echo "This is test pipepline for article_service"
     - cd Backend/article_service
-    - cd venv/scripts
-    - .\Activate.ps1
-    - cd ../..
-    - pytest
+    - ls 
+    - dir
+    # - cd venv/scripts
+    # - .\Activate.ps1
+    # - cd ../..
+    # - pytest
 
 testTopicService:
   stage: testTopicService
   tags: 
     - CI/CD
   script:
-    - echo This is test pipepline for topic_service 
+    - echo "This is test pipepline for topic_service"
 
 testUserService:
   stage: testUserService 
   tags: 
     - CI/CD
   script:
-    - echo This is test pipepline for user_service 
+    - echo "This is test pipepline for user_service"
 
 
 
