@@ -6,7 +6,7 @@ app = FastAPI()
 
 @app.get("/")
 async def root():
-	return {"message": "Hello World"}
+	return {"message": "Hello from topic service"}
 
 
 app.include_router(article_endpoints.router)
