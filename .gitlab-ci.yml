@@ -31,7 +31,7 @@ testTopicService:
 
 testUserService:
   stage: testUserService
-  scrpit:
+  script:
     - echo This is test pipepline for user_service 
 
 
