@@ -1,0 +1,26 @@
+stages:
+  - deployLocal
+  - testArticleService
+  - testTopicService
+  - testUserService
+#  - sonarqube
+
+build:
+  stage: deployLocal
+  script:
+    - echo docker compose deployment
+    - cd Backend
+    - docker compose up 
+  when: manual
+
+
+testArticleService: 
+  stage: test
+  script:
+    - cd Backend/article_service
+    - cd venv/scripts
+    - .\Activate.ps1
+    - cd ../..
+    - pytest
+
+  
