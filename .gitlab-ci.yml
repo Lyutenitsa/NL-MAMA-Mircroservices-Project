@@ -17,18 +17,15 @@ build:
 
 
 testArticleService: 
+  image: python:3.9-slim-buster
   stage: testArticleService
   tags: 
-    - CI/CD
+    - docker_runner
   script:
     - echo "This is test pipepline for article_service"
     - cd Backend/article_service
-    - ls 
-    - dir
-    # - cd venv/scripts
-    # - .\Activate.ps1
-    # - cd ../..
-    # - pytest
+    - pip install -r requirements.txt
+    - pytest
 
 testTopicService:
   stage: testTopicService
