@@ -15,12 +15,27 @@ build:
 
 
 testArticleService: 
-  stage: test
+  stage: testArticleService
   script:
+    - echo This is test pipepline for article_service 
     - cd Backend/article_service
     - cd venv/scripts
     - .\Activate.ps1
     - cd ../..
     - pytest
+
+testTopicService:
+  stage: testTopicService
+  script:
+    - echo This is test pipepline for topic_service 
+
+testUserService:
+  stage: testUserService
+  scrpit:
+    - echo This is test pipepline for user_service 
+
+
+
+
 
   
