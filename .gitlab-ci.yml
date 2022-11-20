@@ -6,10 +6,9 @@ stages:
 #  - sonarqube
 
 build:
-  image: ubuntu:latest
   stage: dockerComposeLocalDeploy
   tags: 
-    - docker_runner
+    - CI/CD
   script:
     - echo "Docker compose deployment"
     - cd Backend
