@@ -25,7 +25,7 @@ testArticleService:
     - echo "This is test pipepline for article_service"
     - cd Backend/article_service
     - echo $ENV_FILE_ARTICLE_SERVICE
-    - cp $ENV_FILE_ARTICLE_SERVICE
+    - cp $ENV_FILE_ARTICLE_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
 
