@@ -1,17 +1,19 @@
 stages:
-  - deployLocal
+  - dockerComposeLocalDeploy
   - testArticleService
   - testTopicService
   - testUserService
 #  - sonarqube
 
 build:
-  stage: deployLocal
+  image: ubuntu:latest
+  stage: dockerComposeLocalDeploy
   tags: 
-    - CI/CD
+    - docker_runner
   script:
-    - echo docker compose deployment
+    - echo "Docker compose deployment"
     - cd Backend
+    - cp $ENV_FILE_DOCKER_COMPOSE .env
     - docker compose up 
   when: manual
 
@@ -28,6 +30,9 @@ testArticleService:
     - cp $ENV_FILE_ARTICLE_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
+  only:
+    changes:
+      - Backend/article_service
 
 testTopicService:
   stage: testTopicService
@@ -39,6 +44,9 @@ testTopicService:
     - cp $ENV_FILE_TOPIC_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
+  only:
+    changes:
+      - Backend/topic_service
 
 testUserService:
   stage: testUserService 
@@ -50,6 +58,9 @@ testUserService:
     - cp $ENV_FILE_USER_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
+  only:
+    changes:
+      - Backend/user_service
 
 
 
