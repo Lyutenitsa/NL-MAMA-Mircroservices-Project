@@ -7,7 +7,8 @@ stages:
 
 build:
   stage: deployLocal
-  tags: CI/CD
+  tags: 
+    - CI/CD
   script:
     - echo docker compose deployment
     - cd Backend
@@ -17,7 +18,8 @@ build:
 
 testArticleService: 
   stage: testArticleService
-  tags: CI/CD
+  tags: 
+    - CI/CD
   script:
     - echo This is test pipepline for article_service 
     - cd Backend/article_service
@@ -28,13 +30,15 @@ testArticleService:
 
 testTopicService:
   stage: testTopicService
-  tags: CI/CD
+  tags: 
+    - CI/CD
   script:
     - echo This is test pipepline for topic_service 
 
 testUserService:
   stage: testUserService 
-  tags: CI/CD
+  tags: 
+    - CI/CD
   script:
     - echo This is test pipepline for user_service 
 
