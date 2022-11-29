@@ -23,14 +23,17 @@ buildDockerImageArticleService:
   stage: buildDockerImageArticleService
   tags: 
     - CI/CD
+  before_script:
+    - echo Running before script
+    - docker login -u $docker_username -p $docker_access_token
   script:
     - echo creating/updating docker image for article_service and uploading to DockerHub 
     - cd Backend/article_service
     - docker build . -t lyutenitsa5/article_service:latest
     - docker push lyutenitsa5/article_service:latest
-  only:
-    changes:
-      - Backend/article_service/*
+  # only:
+  #   changes:
+  #     - Backend/article_service/*
 
 
 buildDockerImageTopicService:
