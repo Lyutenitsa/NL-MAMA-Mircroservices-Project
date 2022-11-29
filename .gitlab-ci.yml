@@ -1,3 +1,4 @@
+
 stages:
   - dockerComposeLocalDeploy
   - buildDockerImageArticleService
@@ -23,6 +24,9 @@ buildDockerImageArticleService:
   stage: buildDockerImageArticleService
   tags: 
     - CI/CD
+  before_script:
+    - echo Running before script
+    - dokcer login -u $docker_username -p $docker_access_token
   script:
     - echo creating/updating docker image for article_service and uploading to DockerHub 
     - cd Backend/article_service
