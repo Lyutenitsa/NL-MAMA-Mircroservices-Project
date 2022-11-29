@@ -82,9 +82,9 @@ testArticleService:
     - cp $ENV_FILE_ARTICLE_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
-  only:
-    changes:
-      - Backend/article_service/*
+  # only:
+  #   changes:
+  #     - Backend/article_service/*
 
 
 testTopicService:
@@ -97,9 +97,9 @@ testTopicService:
     - cp $ENV_FILE_TOPIC_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
-  # only:
-  #   changes:
-  #     - Backend/topic_service/*
+  only:
+    changes:
+      - Backend/topic_service/*
 
 
 testUserService:
