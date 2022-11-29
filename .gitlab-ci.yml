@@ -30,7 +30,7 @@ buildDockerImageArticleService:
     - docker push lyutenitsa5/article_service:latest
   only:
     changes:
-      - Backend/article_service
+      - Backend/article_service/*
 
 
 buildDockerImageTopicService:
@@ -44,7 +44,7 @@ buildDockerImageTopicService:
     - docker push lyutenitsa5/topic_service:latest
   only:
     changes:
-      - Backend/topic_service
+      - Backend/topic_service/*
 
 
 buildDockerImageUserService:
@@ -58,7 +58,7 @@ buildDockerImageUserService:
     - docker push lyutenitsa5/user_service:latest
   only:
     changes:
-      - Backend/user_service
+      - Backend/user_service/*
 
 
 testArticleService: 
