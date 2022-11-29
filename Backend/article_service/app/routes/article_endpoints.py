@@ -16,7 +16,7 @@ router = APIRouter(
 def id_not_found_exception(id):
 	return HTTPException(
 		status_code=status.HTTP_404_NOT_FOUND,
-		detail=f"Article with id= {id} not found"
+		detail=f"Article with id= {id} not found."
 	)
 
 
