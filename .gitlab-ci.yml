@@ -1,9 +1,11 @@
 stages:
   - dockerComposeLocalDeploy
+  - buildDockerImageArticleService
+  - buildDockerImageTopicService
+  - buildDockerImageUserService
   - testArticleService
   - testTopicService
   - testUserService
-#  - sonarqube
 
 build:
   stage: dockerComposeLocalDeploy
@@ -15,6 +17,48 @@ build:
     - cp $ENV_FILE_DOCKER_COMPOSE .env
     - docker compose up 
   when: manual
+
+
+buildDockerImageArticleService:
+  stage: buildDockerImageArticleService
+  tags: 
+    - CI/CD
+  script:
+    - echo creating/updating docker image for article_service and uploading to DockerHub 
+    - cd Backend/article_service
+    - docker build . -t lyutenitsa5/article_service:latest
+    - docker push lyutenitsa5/article_service:latest
+  only:
+    changes:
+      - Backend/article_service
+
+
+buildDockerImageTopicService:
+  stage: buildDockerImageTopicService
+  tags: 
+    - CI/CD
+  script:
+    - echo creating/updating docker image for topic_service and uploading to DockerHub
+    - cd Backend/topic_service
+    - docker build . -t lyutenitsa5/topic_service:latest
+    - docker push lyutenitsa5/topic_service:latest
+  only:
+    changes:
+      - Backend/topic_service
+
+
+buildDockerImageUserService:
+  stage: buildDockerImageUserService
+  tags: 
+    - CI/CD
+  script:
+    - echo creating/updating docker image for user_service and uploading to DockerHub
+    - cd Backend/user_service
+    - docker build . -t lyutenitsa5/user_service:latest
+    - docker push lyutenitsa5/user_service:latest
+  only:
+    changes:
+      - Backend/user_service
 
 
 testArticleService: 
@@ -33,6 +77,7 @@ testArticleService:
     changes:
       - Backend/article_service
 
+
 testTopicService:
   stage: testTopicService
   tags: 
@@ -46,6 +91,7 @@ testTopicService:
   only:
     changes:
       - Backend/topic_service
+
 
 testUserService:
   stage: testUserService 

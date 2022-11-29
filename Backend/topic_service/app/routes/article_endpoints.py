@@ -28,7 +28,7 @@ def check_topic_exists(db, id, name):
 		if not topic_service.check_name_exists(db=db, name=name):
 			return HTTPException(
 				status_code=status.HTTP_404_NOT_FOUND,
-				detail=f"Topic with name= {name} not found"
+				detail=f"Topic with name= {name} not found."
 			)
 		
 		

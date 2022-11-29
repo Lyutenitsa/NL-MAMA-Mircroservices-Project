@@ -22,6 +22,7 @@ def id_not_found_exception(id):
 # def get_all_users(db: Session = Depends(get_db), user_id: int = Depends(authService.get_current_user)):
 # 	print(user_id)
 # 	return user_service.get_all_users(db)
+#
 
 
 @router.get("/{id}", response_model=schemas.UserOut, status_code=status.HTTP_200_OK)
