@@ -31,9 +31,9 @@ buildDockerImageArticleService:
     - cd Backend/article_service
     - docker build . -t lyutenitsa5/article_service:latest
     - docker push lyutenitsa5/article_service:latest
-  only:
-    changes:
-      - Backend/article_service/*
+  # only:
+  #   changes:
+  #     - Backend/article_service/*
 
 
 buildDockerImageTopicService:
