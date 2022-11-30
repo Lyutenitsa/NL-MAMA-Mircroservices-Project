@@ -6,6 +6,7 @@ stages:
   - testArticleService
   - testTopicService
   - testUserService
+  - deploy 
 
 build:
   stage: dockerComposeLocalDeploy
@@ -88,9 +89,10 @@ testArticleService:
 
 
 testTopicService:
+  image: python:3.9-slim-buster
   stage: testTopicService
   tags: 
-    - CI/CD
+    - docker_runner
   script:
     - echo "This is test pipepline for topic_service"
     - cd Backend/topic_service
@@ -103,9 +105,10 @@ testTopicService:
 
 
 testUserService:
+  image: python:3.9-slim-buster
   stage: testUserService 
   tags: 
-    - CI/CD
+    - docker_runner
   script:
     - echo "This is test pipepline for user_service"
     - cd Backend/user_service
@@ -115,6 +118,24 @@ testUserService:
   only:
     changes:
       - Backend/user_service/**/*
+
+
+deploy:
+  image: google/cloud-sdk
+  stage: deploy
+  tags: 
+   - docker_runner
+  script:
+    - echo "testing deploy job"
+    - cp $gcloud_key_file gcloud-key.json
+    - gcloud auth activate-service-account --key-file=gcloud-key.json
+    - gcloud config set project nl-mama-project
+    - gcloud config set container/cluster private-cluster-0
+    - gcloud config set compute/zone europe-west1-d
+
+    - gcloud container clusters get-credentials private-cluster-0 --zone europe-west1-d --project nl-mama-project
+    # - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" deployment.yaml
+    - kubectl apply -f gcloud-deployment.yaml
 
 
 
