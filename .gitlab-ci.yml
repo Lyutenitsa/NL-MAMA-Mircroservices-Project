@@ -134,7 +134,7 @@ deploy:
     - gcloud config set compute/zone europe-west1-d
 
     - gcloud container clusters get-credentials private-cluster-0 --zone europe-west1-d --project nl-mama-project
-    # - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" deployment.yaml
+    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" deployment.yaml
     - kubectl apply -f gcloud-deployment.yaml
 
 
