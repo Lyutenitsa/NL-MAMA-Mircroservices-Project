@@ -110,3 +110,4 @@ venv
 
 .idea/*
 .idea
+gcloud-key-file.json
