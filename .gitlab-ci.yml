@@ -32,9 +32,9 @@ buildDockerImageArticleService:
     - cd Backend/article_service
     - docker build . -t lyutenitsa5/article_service:latest
     - docker push lyutenitsa5/article_service:latest
-  only:
-    changes:
-      - Backend/article_service/**/*
+  # only:
+  #   changes:
+  #     - Backend/article_service/**/*
 
 
 buildDockerImageTopicService:
@@ -49,9 +49,9 @@ buildDockerImageTopicService:
     - cd Backend/topic_service
     - docker build . -t lyutenitsa5/topic_service:latest
     - docker push lyutenitsa5/topic_service:latest
-  only:
-    changes:
-      - Backend/topic_service/**/*
+  # only:
+  #   changes:
+  #     - Backend/topic_service/**/*
 
 
 buildDockerImageUserService:
@@ -66,9 +66,9 @@ buildDockerImageUserService:
     - cd Backend/user_service
     - docker build . -t lyutenitsa5/user_service:latest
     - docker push lyutenitsa5/user_service:latest
-  only:
-    changes:
-      - Backend/user_service/**/*
+  # only:
+  #   changes:
+  #     - Backend/user_service/**/*
 
 
 testArticleService: 
@@ -83,9 +83,9 @@ testArticleService:
     - cp $ENV_FILE_ARTICLE_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
-  only:
-    changes:
-      - Backend/article_service/**/*
+  # only:
+  #   changes:
+  #     - Backend/article_service/**/*
 
 
 testTopicService:
@@ -99,9 +99,9 @@ testTopicService:
     - cp $ENV_FILE_TOPIC_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
-  only:
-    changes:
-      - Backend/topic_service/**/*
+  # only:
+  #   changes:
+  #     - Backend/topic_service/**/*
 
 
 testUserService:
@@ -115,9 +115,9 @@ testUserService:
     - cp $ENV_FILE_USER_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
-  only:
-    changes:
-      - Backend/user_service/**/*
+  # only:
+  #   changes:
+  #     - Backend/user_service/**/*
 
 
 deploy:
