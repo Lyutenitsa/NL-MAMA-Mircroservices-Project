@@ -51,14 +51,3 @@ services:
       - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_ARTICLE_SERVICE_POSTGRES}
       # - USER_SERVICE_HOST_URL=${USER_SERVICE_HOST_URL}
       # - topic_SERVICE_HOST_URL=${TOPIC_SERVICE_HOST_URL}
-
-  # commenservice:
-  #   image: commenservice
-  #   container_name: commenservice
-  #   build: ./commenservice
-  #   volumes:
-  #     - ./commenservice:/app/
-  #   environment:
-  #     - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${COMMENT_SERVICE_POSTGRES_DB}
-  #     # - USER_SERVICE_HOST_URL=${USER_SERVICE_HOST_URL}
-  #     # - ARTICLE_SERVICE_HOST_URL=${ARTICLE_SERVICE_HOST_URL}
