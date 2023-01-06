@@ -23,7 +23,7 @@ dockerComposeLocalBuild:
 
 sonarqube-check:
   image: 
-    name: sonarsource/sonar-scanner-cli:latest
+    name: sonarsource/sonar-scanner-cli:latest --network="host"
     entrypoint: [""]
   stage: sonarQubecheck
   tags:
