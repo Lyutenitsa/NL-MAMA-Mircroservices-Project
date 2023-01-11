@@ -1,163 +1,167 @@
 stages:
-  - dockerComposeLocalDeploy
+  # - dockerComposeLocalDeploy
   - sonarQubecheck
-  - buildDockerImageArticleService
-  - buildDockerImageTopicService
-  - buildDockerImageUserService
-  - testArticleService
-  - testTopicService
-  - testUserService
-  - deploy 
+  # - buildDockerImageArticleService
+  # - buildDockerImageTopicService
+  # - buildDockerImageUserService
+  # - testArticleService
+  # - testTopicService
+  # - testUserService
+  # - deploy 
 
-dockerComposeLocalBuild:
-  stage: dockerComposeLocalDeploy
-  tags: 
-    - CI/CD
-  script:
-    - echo "Docker compose deployment"
-    - cd Backend
-    - cp $ENV_FILE_DOCKER_COMPOSE .env
-    - docker compose up 
-  when: manual
+# dockerComposeLocalBuild:
+#   stage: dockerComposeLocalDeploy
+#   tags: 
+#     - CI/CD
+#   script:
+#     - echo "Docker compose deployment"
+#     - cd Backend
+#     - cp $ENV_FILE_DOCKER_COMPOSE .env
+#     - docker compose up 
+#   when: manual
 
 
 sonarqube-check:
-  image: 
-    name: sonarsource/sonar-scanner-cli:latest
-    entrypoint: [""]
   stage: sonarQubecheck
-  tags:
-    - docker-runner-framework
-  variables:
-    SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
-    GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
-  cache:
-    key: "${CI_JOB_NAME}"
-    paths:
-      - .sonar/cache
-  script: 
-    - sonar-scanner
-  allow_failure: true
-  only:
-    - main
-
-
-buildDockerImageArticleService:
-  stage: buildDockerImageArticleService
   tags: 
-    - CI/CD
-  before_script:
-    - echo "Running before script"
-    - docker login -u $docker_username -p $docker_access_token
+    - shell-runner-framework
   script:
-    - echo creating/updating docker image for article_service and uploading to DockerHub 
-    - cd Backend/article_service
-    - docker build . -t lyutenitsa5/article_service:latest
-    - docker push lyutenitsa5/article_service:latest
+    - sonar-scanner -Dsonar.organization=gitlabfhict -Dsonar.projectKey=gitlabfhictsemester6 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io
+  # image: 
+  #   name: sonarsource/sonar-scanner-cli:latest
+  #   entrypoint: [""]
+  # tags:
+  #   - docker-runner-framework
+  # variables:
+  #   SONAR_USER_HOME: "${CI_PROJECT_DIR}/.sonar"  # Defines the location of the analysis task cache
+  #   GIT_DEPTH: "0"  # Tells git to fetch all the branches of the project, required by the analysis task
+  # cache:
+  #   key: "${CI_JOB_NAME}"
+  #   paths:
+  #     - .sonar/cache
+  # script: 
+  #   - sonar-scanner
+  # allow_failure: true
   # only:
-  #   changes:
-  #     - Backend/article_service/**/*
+  #   - main
 
 
-buildDockerImageTopicService:
-  stage: buildDockerImageTopicService
-  tags: 
-    - CI/CD
-  before_script:
-    - echo "Running before script"
-    - docker login -u $docker_username -p $docker_access_token
-  script:
-    - echo creating/updating docker image for topic_service and uploading to DockerHub
-    - cd Backend/topic_service
-    - docker build . -t lyutenitsa5/topic_service:latest
-    - docker push lyutenitsa5/topic_service:latest
-  # only:
-  #   changes:
-  #     - Backend/topic_service/**/*
+# buildDockerImageArticleService:
+#   stage: buildDockerImageArticleService
+#   tags: 
+#     - CI/CD
+#   before_script:
+#     - echo "Running before script"
+#     - docker login -u $docker_username -p $docker_access_token
+#   script:
+#     - echo creating/updating docker image for article_service and uploading to DockerHub 
+#     - cd Backend/article_service
+#     - docker build . -t lyutenitsa5/article_service:latest
+#     - docker push lyutenitsa5/article_service:latest
+#   # only:
+#   #   changes:
+#   #     - Backend/article_service/**/*
 
 
-buildDockerImageUserService:
-  stage: buildDockerImageUserService
-  tags: 
-    - CI/CD
-  before_script:
-    - echo "Running before script"
-    - docker login -u $docker_username -p $docker_access_token
-  script:
-    - echo creating/updating docker image for user_service and uploading to DockerHub
-    - cd Backend/user_service
-    - docker build . -t lyutenitsa5/user_service:latest
-    - docker push lyutenitsa5/user_service:latest
-  # only:
-  #   changes:
-  #     - Backend/user_service/**/*
+# buildDockerImageTopicService:
+#   stage: buildDockerImageTopicService
+#   tags: 
+#     - CI/CD
+#   before_script:
+#     - echo "Running before script"
+#     - docker login -u $docker_username -p $docker_access_token
+#   script:
+#     - echo creating/updating docker image for topic_service and uploading to DockerHub
+#     - cd Backend/topic_service
+#     - docker build . -t lyutenitsa5/topic_service:latest
+#     - docker push lyutenitsa5/topic_service:latest
+#   # only:
+#   #   changes:
+#   #     - Backend/topic_service/**/*
 
 
-testArticleService: 
-  image: python:3.9-slim-buster
-  stage: testArticleService
-  tags: 
-    - docker_runner
-  script:
-    - echo "This is test pipepline for article_service"
-    - cd Backend/article_service
-    - echo $ENV_FILE_ARTICLE_SERVICE
-    - cp $ENV_FILE_ARTICLE_SERVICE .env_local
-    - pip install -r requirements.txt
-    - pytest
-  # only:
-  #   changes:
-  #     - Backend/article_service/**/*
+# buildDockerImageUserService:
+#   stage: buildDockerImageUserService
+#   tags: 
+#     - CI/CD
+#   before_script:
+#     - echo "Running before script"
+#     - docker login -u $docker_username -p $docker_access_token
+#   script:
+#     - echo creating/updating docker image for user_service and uploading to DockerHub
+#     - cd Backend/user_service
+#     - docker build . -t lyutenitsa5/user_service:latest
+#     - docker push lyutenitsa5/user_service:latest
+#   # only:
+#   #   changes:
+#   #     - Backend/user_service/**/*
 
 
-testTopicService:
-  image: python:3.9-slim-buster
-  stage: testTopicService
-  tags: 
-    - docker_runner
-  script:
-    - echo "This is test pipepline for topic_service"
-    - cd Backend/topic_service
-    - cp $ENV_FILE_TOPIC_SERVICE .env_local
-    - pip install -r requirements.txt
-    - pytest
-  # only:
-  #   changes:
-  #     - Backend/topic_service/**/*
+# testArticleService: 
+#   image: python:3.9-slim-buster
+#   stage: testArticleService
+#   tags: 
+#     - docker_runner
+#   script:
+#     - echo "This is test pipepline for article_service"
+#     - cd Backend/article_service
+#     - echo $ENV_FILE_ARTICLE_SERVICE
+#     - cp $ENV_FILE_ARTICLE_SERVICE .env_local
+#     - pip install -r requirements.txt
+#     - pytest
+#   # only:
+#   #   changes:
+#   #     - Backend/article_service/**/*
 
 
-testUserService:
-  image: python:3.9-slim-buster
-  stage: testUserService 
-  tags: 
-    - docker_runner
-  script:
-    - echo "This is test pipepline for user_service"
-    - cd Backend/user_service
-    - cp $ENV_FILE_USER_SERVICE .env_local
-    - pip install -r requirements.txt
-    - pytest
-  # only:
-  #   changes:
-  #     - Backend/user_service/**/*
+# testTopicService:
+#   image: python:3.9-slim-buster
+#   stage: testTopicService
+#   tags: 
+#     - docker_runner
+#   script:
+#     - echo "This is test pipepline for topic_service"
+#     - cd Backend/topic_service
+#     - cp $ENV_FILE_TOPIC_SERVICE .env_local
+#     - pip install -r requirements.txt
+#     - pytest
+#   # only:
+#   #   changes:
+#   #     - Backend/topic_service/**/*
 
 
-deploy:
-  image: google/cloud-sdk
-  stage: deploy
-  tags: 
-   - docker_runner
-  script:
-    - echo "testing deploy job"
-    - cp $gcloud_key_file gcloud-key.json
-    - gcloud auth activate-service-account --key-file=gcloud-key.json
-    - gcloud config set project nl-mama-project
-    - gcloud config set container/cluster private-cluster-0
-    - gcloud config set compute/zone europe-west1-c
+# testUserService:
+#   image: python:3.9-slim-buster
+#   stage: testUserService 
+#   tags: 
+#     - docker_runner
+#   script:
+#     - echo "This is test pipepline for user_service"
+#     - cd Backend/user_service
+#     - cp $ENV_FILE_USER_SERVICE .env_local
+#     - pip install -r requirements.txt
+#     - pytest
+#   # only:
+#   #   changes:
+#   #     - Backend/user_service/**/*
 
-    - gcloud container clusters get-credentials test-cluster --zone europe-west1-c --project nl-mama-project
-    - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" gcloud-deployment.yaml
-    - kubectl apply -f gcloud-deployment.yaml
+
+# deploy:
+#   image: google/cloud-sdk
+#   stage: deploy
+#   tags: 
+#    - docker_runner
+#   script:
+#     - echo "testing deploy job"
+#     - cp $gcloud_key_file gcloud-key.json
+#     - gcloud auth activate-service-account --key-file=gcloud-key.json
+#     - gcloud config set project nl-mama-project
+#     - gcloud config set container/cluster private-cluster-0
+#     - gcloud config set compute/zone europe-west1-c
+
+#     - gcloud container clusters get-credentials test-cluster --zone europe-west1-c --project nl-mama-project
+#     - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" gcloud-deployment.yaml
+#     - kubectl apply -f gcloud-deployment.yaml
 
 
 
