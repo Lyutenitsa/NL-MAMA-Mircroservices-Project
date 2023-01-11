@@ -26,6 +26,10 @@ sonarqube-check:
   tags: 
     - shell-runner-framework
   script:
+    - export SONAR_SCANNER_VERSION=4.7.0.2747
+    - export SONAR_SCANNER_HOME=$HOME/.sonar/sonar-scanner-$SONAR_SCANNER_VERSION-linux
+    - export PATH=$SONAR_SCANNER_HOME/bin:$PATH
+    - export SONAR_SCANNER_OPTS="-server"
     - sonar-scanner -Dsonar.organization=gitlabfhict -Dsonar.projectKey=gitlabfhictsemester6 -Dsonar.sources=. -Dsonar.host.url=https://sonarcloud.io
   # image: 
   #   name: sonarsource/sonar-scanner-cli:latest
