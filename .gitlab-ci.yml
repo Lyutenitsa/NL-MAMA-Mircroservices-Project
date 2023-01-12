@@ -171,12 +171,12 @@ deploy:
   script:
     - echo "testing deploy job"
     - cp $gcloud_key_file gcloud-key.json
+    - export USE_GKE_GCLOUD_AUTH_PLUGIN=True
     - gcloud auth activate-service-account --key-file=gcloud-key.json
     - gcloud config set project semester6-individual
     - gcloud config set container/cluster nl-mama-cluster
     - gcloud config set compute/zone europe-west2-a
-
-    - gcloud container clusters get-credentials test-cluster --zone europe-west2-a --project semester6-individual
+    - gcloud container clusters get-credentials nl-mama-cluster --zone europe-west2 --project semester6-individual
     - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" gcloud-deployment.yaml
     - kubectl apply -f gcloud-deployment.yaml
   allow_failure: true
