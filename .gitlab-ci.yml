@@ -25,6 +25,8 @@ sonarqube-check:
   stage: sonarQubecheck
   tags: 
     - docker-runner-framework
+  image: 
+    name: sonarsource/sonar-scanner-cli:latest
   cache:
     key: "${CI_JOB_NAME}"
     paths:
