@@ -12,7 +12,7 @@ stages:
 dockerComposeLocalBuild:
   stage: dockerComposeLocalDeploy
   tags: 
-    - CI/CD
+    - shell-runner-framework
   script:
     - echo "Docker compose deployment"
     - cd Backend
@@ -46,7 +46,7 @@ sonarqube-check:
 buildDockerImageArticleService:
   stage: buildDockerImageArticleService
   tags: 
-    - CI/CD
+    - shell-runner-framework
   before_script:
     - echo "Running before script"
     - docker login -u $docker_username -p $docker_access_token
@@ -63,7 +63,7 @@ buildDockerImageArticleService:
 buildDockerImageTopicService:
   stage: buildDockerImageTopicService
   tags: 
-    - CI/CD
+    - shell-runner-framework
   before_script:
     - echo "Running before script"
     - docker login -u $docker_username -p $docker_access_token
@@ -80,7 +80,7 @@ buildDockerImageTopicService:
 buildDockerImageUserService:
   stage: buildDockerImageUserService
   tags: 
-    - CI/CD
+    - shell-runner-framework
   before_script:
     - echo "Running before script"
     - docker login -u $docker_username -p $docker_access_token
