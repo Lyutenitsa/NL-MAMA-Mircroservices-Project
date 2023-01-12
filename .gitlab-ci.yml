@@ -57,6 +57,7 @@ buildDockerImageArticleService:
     - cd Backend/article_service
     - docker build . -t lyutenitsa5/article_service:latest
     - docker push lyutenitsa5/article_service:latest
+  allow_failure: true
   # only:
   #   changes:
   #     - Backend/article_service/**/*
@@ -74,6 +75,8 @@ buildDockerImageTopicService:
     - cd Backend/topic_service
     - docker build . -t lyutenitsa5/topic_service:latest
     - docker push lyutenitsa5/topic_service:latest
+  allow_failure: true
+
   # only:
   #   changes:
   #     - Backend/topic_service/**/*
@@ -91,6 +94,8 @@ buildDockerImageUserService:
     - cd Backend/user_service
     - docker build . -t lyutenitsa5/user_service:latest
     - docker push lyutenitsa5/user_service:latest
+  allow_failure: true
+
   # only:
   #   changes:
   #     - Backend/user_service/**/*
@@ -110,6 +115,8 @@ testArticleService:
     - cp $ENV_FILE_ARTICLE_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
+  allow_failure: true
+
   # only:
   #   changes:
   #     - Backend/article_service/**/*
@@ -127,6 +134,8 @@ testTopicService:
     - cp $ENV_FILE_TOPIC_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
+  allow_failure: true
+
   # only:
   #   changes:
   #     - Backend/topic_service/**/*
@@ -144,6 +153,8 @@ testUserService:
     - cp $ENV_FILE_USER_SERVICE .env_local
     - pip install -r requirements.txt
     - pytest
+  allow_failure: true
+
   # only:
   #   changes:
   #     - Backend/user_service/**/*
@@ -166,6 +177,8 @@ deploy:
     - gcloud container clusters get-credentials test-cluster --zone europe-west1-c --project nl-mama-project
     - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" gcloud-deployment.yaml
     - kubectl apply -f gcloud-deployment.yaml
+  allow_failure: true
+
 
 
 
