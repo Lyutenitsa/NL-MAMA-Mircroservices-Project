@@ -176,7 +176,7 @@ deploy:
     - gcloud config set container/cluster nl-mama-cluster
     - gcloud config set compute/zone europe-west2-a
 
-    - gcloud container clusters get-credentials test-cluster --zone europe-west2-a --project semester6-individual
+    - gcloud container clusters get-credentials nl-mama-cluster --zone europe-west2-a --project semester6-individual
     - sed -i "s/<VERSION>/${CI_COMMIT_SHORT_SHA}/g" gcloud-deployment.yaml
     - kubectl apply -f gcloud-deployment.yaml
   allow_failure: true
