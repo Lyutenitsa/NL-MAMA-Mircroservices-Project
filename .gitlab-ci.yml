@@ -105,7 +105,6 @@ testArticleService:
   image: python:3.9-slim-buster
   stage: testArticleService
   tags: 
-    - docker_runner
     - docker-runner-framework
 
   script:
@@ -126,7 +125,6 @@ testTopicService:
   image: python:3.9-slim-buster
   stage: testTopicService
   tags: 
-    - docker_runner
     - docker-runner-framework
   script:
     - echo "This is test pipepline for topic_service"
@@ -145,7 +143,6 @@ testUserService:
   image: python:3.9-slim-buster
   stage: testUserService 
   tags: 
-    - docker_runner
     - docker-runner-framework
   script:
     - echo "This is test pipepline for user_service"
@@ -164,7 +161,6 @@ deploy:
   image: google/cloud-sdk
   stage: deploy
   tags: 
-   - docker_runner
    - docker-runner-framework
   script:
     - echo "testing deploy job"
