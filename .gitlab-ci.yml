@@ -171,7 +171,7 @@ deploy:
   script:
     - echo "testing deploy job"
     - cp $gcloud_key_file gcloud-key.json
-    - gcloud components install gke-gcloud-auth-plugin
+    - sudo apt-get install google-cloud-sdk-gke-gcloud-auth-plugin
     - gcloud auth activate-service-account --key-file=gcloud-key.json
     - gcloud config set project semester6-individual
     - gcloud config set container/cluster nl-mama-cluster
