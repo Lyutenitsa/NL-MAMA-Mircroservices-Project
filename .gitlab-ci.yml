@@ -54,7 +54,7 @@ buildDockerImageArticleService:
     - echo "Running before script"
     - docker login -u $docker_username -p $docker_access_token
   script:
-    - echo creating/updating docker image for article_service and uploading to DockerHub 
+    - echo "creating/updating docker image for article_service and uploading to DockerHub" 
     - cd Backend/article_service
     - docker build . -t lyutenitsa5/article_service:latest
     - docker push lyutenitsa5/article_service:latest
@@ -73,7 +73,7 @@ buildDockerImageTopicService:
     - echo "Running before script"
     - docker login -u $docker_username -p $docker_access_token
   script:
-    - echo creating/updating docker image for topic_service and uploading to DockerHub
+    - echo "creating/updating docker image for topic_service and uploading to DockerHub"
     - cd Backend/topic_service
     - docker build . -t lyutenitsa5/topic_service:latest
     - docker push lyutenitsa5/topic_service:latest
@@ -93,7 +93,7 @@ buildDockerImageUserService:
     - echo "Running before script"
     - docker login -u $docker_username -p $docker_access_token
   script:
-    - echo creating/updating docker image for user_service and uploading to DockerHub
+    - echo "creating/updating docker image for user_service and uploading to DockerHub"
     - cd Backend/user_service
     - docker build . -t lyutenitsa5/user_service:latest
     - docker push lyutenitsa5/user_service:latest
