@@ -9,6 +9,7 @@ if os.getenv("DATABASE_URL"):
 	SQLALCHEMY_DATABASE_URL = os.getenv("DATABASE_URL")
 
 else:
+	print("DATABASE_URL not found")
 	SQLALCHEMY_DATABASE_URL = f"postgresql://{settings.database_username}:" \
 	                          f"{settings.database_password}" \
 	                          f"@{settings.database_host}:" \
