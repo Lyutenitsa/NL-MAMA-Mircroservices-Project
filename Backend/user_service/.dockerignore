@@ -7,7 +7,6 @@ Dockerfile
 Procfile
 test
 .idea
-.env_cloud
 .pytest_cache
 .gitignore
 .gitlab-ci.yml
