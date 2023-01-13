@@ -21,11 +21,11 @@ services:
       - 6868:8080
     volumes:
       - ./user_service:/app/
-    environment:
-      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_USER_SERVICE_POSTGRES}
-      - AUTH_SECRET_KEY=${AUTH_SECRET_KEY}
-      - AUTH_TOKEN_ALGORITHM=${AUTH_TOKEN_ALGORITHM}
-      - AUTH_ACCESS_TOKEN_EXPIRE_MINUTES=${AUTH_ACCESS_TOKEN_EXPIRE_MINUTES}
+    # environment:
+    #   - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_USER_SERVICE_POSTGRES}
+    #   - AUTH_SECRET_KEY=${AUTH_SECRET_KEY}
+    #   - AUTH_TOKEN_ALGORITHM=${AUTH_TOKEN_ALGORITHM}
+    #   - AUTH_ACCESS_TOKEN_EXPIRE_MINUTES=${AUTH_ACCESS_TOKEN_EXPIRE_MINUTES}
 
   topic_service:
     image: topic_service
@@ -35,19 +35,19 @@ services:
       - 6869:8081
     volumes:
       - ./topic_service:/app/
-    environment:
-      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_TOPIC_SERVICE_POSTGRES}
-      # - USER_SERVICE_HOST_URL=${USER_SERVICE_HOST_URL}
+    # environment:
+    #   - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_TOPIC_SERVICE_POSTGRES}
+    #   # - USER_SERVICE_HOST_URL=${USER_SERVICE_HOST_URL}
 
   article_service:
     image: article_service
     container_name: article_service
     build: ./article_service
     ports:
-      - 6870:8082
+      - 6871:8082
     volumes:
       - ./article_service:/app/
-    environment:
-      - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_ARTICLE_SERVICE_POSTGRES}
-      # - USER_SERVICE_HOST_URL=${USER_SERVICE_HOST_URL}
-      # - topic_SERVICE_HOST_URL=${TOPIC_SERVICE_HOST_URL}
+    # environment:
+    #   - DATABASE_URL=postgresql://${DB_USER}:${DB_PASSWORD}@${DB_HOSTNAME}/${DB_ARTICLE_SERVICE_POSTGRES}
+    #   # - USER_SERVICE_HOST_URL=${USER_SERVICE_HOST_URL}
+    #   # - topic_SERVICE_HOST_URL=${TOPIC_SERVICE_HOST_URL}

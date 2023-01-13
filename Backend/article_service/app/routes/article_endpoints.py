@@ -64,6 +64,14 @@ def create_article(new_article: schemas.ArticleIn, db: Session = Depends(get_db)
 	
 	return db_article
 
+@router.post("/load_testing", response_model=schemas.ArticleOut, status_code=status.HTTP_201_CREATED)
+async def create_article(new_article: schemas.ArticleIn,):
+	# check_article_exists(db=db,id=None, title=new_article.title)
+	# db_article = article_service.create(db=db, obj_in=new_article)
+	# return db_article
+
+	print("Load testing endpoint")
+
 
 @router.put("/{id}", response_model=schemas.ArticleOut, status_code=status.HTTP_200_OK)
 def update_article(article_to_update: schemas.ArticleIn, id: str, db: Session = Depends(get_db)):
