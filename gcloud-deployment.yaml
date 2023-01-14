@@ -4,7 +4,7 @@ metadata:
   name: deployment
   labels:
     app: python
-sspec:
+spec:
  replicas: 1
  selector:
    matchLabels:
