@@ -3,16 +3,16 @@ kind: Deployment
 metadata:
   name: gitlab-gke-cicd
   labels:
-    app: python
+    app: nl-mama
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: python
+      app: nl-mama
   template:
     metadata:
       labels:
-        app: python
+        app: nl-mama
     spec:
       containers:
         - name: python-article-service
@@ -55,12 +55,16 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: python-service
+  name: nl-mama-service
   labels:
-    app: python
+    app: nl-mama
 spec:
   ports:
     - port: 8080
       targetPort: 8080
+    - port: 8081
+      targetPort: 8081
+    - port: 8082
+      targetPort: 8082
   selector:
-    app: python
+    app: nl-mama
