@@ -18,7 +18,7 @@ services:
     container_name: user_service
     build: ./user_service
     ports:
-      - 6868:8080
+      - 6868:8082
     volumes:
       - ./user_service:/app/
     # environment:
@@ -44,7 +44,7 @@ services:
     container_name: article_service
     build: ./article_service
     ports:
-      - 6871:8082
+      - 6871:8080
     volumes:
       - ./article_service:/app/
     # environment:
