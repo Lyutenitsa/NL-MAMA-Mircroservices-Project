@@ -1,3 +1,4 @@
+import random
 from typing import List
 
 from fastapi import Depends, APIRouter, Response, HTTPException, status
@@ -72,6 +73,14 @@ def create_article(new_article: schemas.ArticleIn,):
 	# return db_article
 
 	print("Load testing endpoint")
+
+
+@router.post("/load_testing_sample", status_code=status.HTTP_201_CREATED)
+def create_article(test_string: str):
+	random_int = random.randint(0, 10000)
+	response = "From load testing endpoint: " + test_string + " -_- " + str(random_int)
+	print(response)
+	return response
 
 
 @router.put("/{id}", response_model=schemas.ArticleOut, status_code=status.HTTP_200_OK)
