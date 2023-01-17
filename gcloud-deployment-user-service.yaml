@@ -15,7 +15,7 @@ spec:
         app: nl-mama-user-service
     spec:
       containers:
-        - name: python-article-service
+        - name: python-user-service
           image: lyutenitsa5/user_service:latest
           imagePullPolicy: Always
           resources:
