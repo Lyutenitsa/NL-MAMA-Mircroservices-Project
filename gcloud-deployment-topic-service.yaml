@@ -1,18 +1,18 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: topic_service
+  name: topic-service
   labels:
-    app: nl-mama_topic_service
+    app: nl-mama-topic-service
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: nl-mama_topic_service
+      app: nl-mama-topic-service
   template:
     metadata:
       labels:
-        app: nl-mama_topic_service
+        app: nl-mama-topic-service
     spec:
       containers:
         - name: python-article-service
@@ -39,12 +39,12 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: nl-mama-service_topic_service
+  name: nl-mama-service-topic-service
   labels:
-    app: nl-mama_topic_service
+    app: nl-mama-topic-service
 spec:
   ports:
     - port: 8081
       targetPort: 8081
   selector:
-    app: nl-mama_topic_service
+    app: nl-mama-topic-service
