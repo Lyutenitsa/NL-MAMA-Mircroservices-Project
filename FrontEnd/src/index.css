@@ -1,0 +1,114 @@
+.btn-primary, .btn-primary:hover, .btn-primary:active, .btn-primary:visited {
+  background-color: #0055b9 !important;
+}
+
+/* Secondary color is now black */
+.btn-secondary, .btn-secondary:hover, .btn-secondary:active, .btn-secondary:visited {
+  background-color: #000000 !important;
+}
+
+.Toastify__toast--info {
+  background: #0055b9 !important;
+}
+
+/* custom buttons actions */
+
+.btn-delete {
+  background-color: #D50000;
+  color: #ffffff;
+}
+
+.btn-delete:hover {
+  background-color: #ffffff;
+  color: #D50000;
+  border-style: solid;
+  border-color: #D50000;
+  animation: pulse 1s;
+}
+
+.btn-save {
+  background-color: #2E7D32;
+  color: #ffffff;
+}
+
+.btn-save:hover {
+  background-color: #ffffff;
+  color: #2E7D32;
+  border-style: solid;
+  border-color: #2E7D32;
+}
+
+.btn-add {
+  background-color: #0055b9;
+  color: #ffffff;
+}
+
+.btn-add:hover {
+  background-color: #ffffff;
+  color: #0055b9;
+  border-style: solid;
+  border-color: #0055b9;
+}
+
+.btn-cancel{
+  background-color: #BF360C;
+  color: #ffffff;
+}
+
+.btn-cancel:hover {
+  background-color: #ffffff;
+  color: #BF360C;
+  border-style: solid;
+  border-color: #BF360C;
+}
+
+/* custom button sections */
+
+.btn-start {
+  background-color: #455A64;
+  color: #ffffff;
+}
+.btn-start:hover {
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: #455A64;
+  color: #455A64;
+}
+
+.btn-article{
+  background-color: #00E676;
+  color: #000000;
+}
+
+.btn-article:hover{
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: #00E676;
+  color: #00E676;
+}
+
+.btn-users{
+  background-color: #795548;
+  color: #ffffff;
+}
+
+.btn-users:hover {
+  background-color: #ffffff;
+  border-style: solid;
+  border-color: #795548;
+  color: #795548;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(.85);
+  }
+  35% {
+    transform: scale(1);
+  }
+  70% {
+    transform: scale(.85);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

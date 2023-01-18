@@ -1,1 +1,1 @@
-from app.schemas.user import UserBase, UserIn, UserOut
+from app.schemas.user import UserBase, UserIn, UserOut, UserCredentials

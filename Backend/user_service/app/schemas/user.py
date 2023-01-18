@@ -20,3 +20,8 @@ class UserOut(UserBase):
 
 class UserIn(UserBase):
 	password: str
+
+
+class UserCredentials(BaseModel):
+	username: str
+	password: str

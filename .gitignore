@@ -112,3 +112,4 @@ venv
 .idea
 gcloud-key-file.json
 .scannerwork
+node_modules
