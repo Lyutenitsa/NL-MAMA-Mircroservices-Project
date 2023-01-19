@@ -1,4 +1,5 @@
 stages:
+  - cypresEndToEndTests
   - dockerComposeLocalDeploy
   - sonarQubecheck
   - buildDockerImageArticleService
@@ -7,7 +8,6 @@ stages:
   - testArticleService
   - testTopicService
   - testUserService
-  - cypresEndToEndTests
   - deploy_article_service
   - deploy_topic_service
   - deploy_user_service
