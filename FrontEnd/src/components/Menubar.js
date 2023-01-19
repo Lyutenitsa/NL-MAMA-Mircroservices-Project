@@ -14,14 +14,15 @@ import useLoggedInName from '../hooks/useLoggedInName';
 
 const Menubar = () => {
     const { loginState } = useStateHook(store);
-    const userName = useLoggedInName();
+    // const username = useLoggedInName();
 
     //empty variables for link components 
     let homeLink = '';
     let loginLink = '';
     let registerLink = '';
     let usersLink = '';
-    let articleUploadLink = '';
+    let articlesLink = '';
+    let newTopicLink = '';
     let logoutLink = '';
     let loggedInName = '';
 
@@ -35,7 +36,7 @@ const Menubar = () => {
 
         registerLink = (
             <LinkContainer to='/register'>
-                <Nav.Link>Registreren</Nav.Link>
+                <Nav.Link>Register</Nav.Link>
             </LinkContainer>
         );
     } else {
@@ -43,19 +44,10 @@ const Menubar = () => {
         //link to homescreen
         homeLink = (
             <LinkContainer to='/homescreen'>
-                <Nav.Link><b>Start</b></Nav.Link>
+                <Nav.Link><b>NL-MAMA</b></Nav.Link>
             </LinkContainer>
 
         )
-
-        //link users table
-        usersLink = (
-            <LinkContainer to='/users'>
-                <Nav.Link>GebruikersOverzicht</Nav.Link>
-            </LinkContainer>
-        );
-
-
 
         //link logging out
         logoutLink = (
@@ -65,18 +57,23 @@ const Menubar = () => {
         );
 
         //link article uploading
-        articleUploadLink = (
-            <LinkContainer to='/articleupload'>
-                <Nav.Link>Article Uploaden</Nav.Link>
+        articlesLink = (
+            <LinkContainer to='/articles'>
+                <Nav.Link>Articles</Nav.Link>
             </LinkContainer>
-        );     
-
-        //name of logged-in user
-        loggedInName = (
-            <Navbar.Text>
-               {userName} is ingelogd.
-            </Navbar.Text>
         );
+        newTopicLink = (
+            <LinkContainer to='/newTopic'>
+                <Nav.Link>New Topic</Nav.Link>
+            </LinkContainer>
+        );
+
+        // //name of logged-in user
+        // loggedInName = (
+        //     <Navbar.Text>
+        //        {username} is ingelogd.
+        //     </Navbar.Text>
+        // );
     }
 
     return (
@@ -87,7 +84,8 @@ const Menubar = () => {
                     {registerLink}
                     {homeLink}
                     {usersLink}
-                    {articleUploadLink}   
+                    {articlesLink}
+                    {newTopicLink}
                     {logoutLink}
                 </Nav>
                 {loggedInName}

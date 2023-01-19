@@ -33,8 +33,8 @@ const Register = () => {
             .register({
                 username: data.name,
                 password: data.password,
-                first_name: "test",
-                last_name: "test",
+                first_name: data.first_name,
+                last_name: data.last_name,
             })
             .then((response) => {
                 // Update store and sets loginstate 
@@ -93,7 +93,7 @@ const Register = () => {
                                         <Form.Control
                                             type='password'
                                             data-cy='passwordField'
-                                            placeholder='Wachtwoord'
+                                            placeholder='Password'
                                             {...register('password')}
                                         />
                                     </Form.Group>

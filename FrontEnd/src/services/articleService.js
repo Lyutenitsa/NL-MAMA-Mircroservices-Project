@@ -1,24 +1,25 @@
 import apiClient from '../api/config';
+import axios from "axios";
 
 const articleService = {
     findAll() {
-        return apiClient.get('8080/articles/');
+        return axios.get('http://35.189.107.180:8080/articles/');
     },
     findOne(data) {
-        let url = '8080/articles/' + data.id;
-        return apiClient.get(url);
+        let url = 'http://35.189.107.180:8080/articles/' + data.id;
+        return axios.get(url);
     },
+    save(data) {
+        return axios.post("http://35.189.107.180:8080/articles/", data);
+    },
+
     update(data) {
-        return apiClient.post('8080/articles/update', data, { responseType: 'blob' });
+        return axios.post('http://35.189.107.180:8080/articles/update', data, { responseType: 'blob' });
     },
     remove(data) {
-        let url = '8080/articles/' + data.id;
-        return apiClient.delete(url);
+        let url = 'http://35.189.107.180:8080/articles/' + data.id;
+        return axios.delete(url);
     },
-    removeAll(){
-        let url = '8080/articles/deleteall';
-        return apiClient.delete(url);
-    }
 };
 
 export default articleService;
