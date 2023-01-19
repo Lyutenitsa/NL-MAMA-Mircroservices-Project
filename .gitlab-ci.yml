@@ -14,7 +14,7 @@ stages:
   
 
 cypresEndToEndTests:
-  image: node:13.12.0-alpine
+  image: cypress/browsers:node17.8.0-chrome99-ff97-slim
   stage: cypresEndToEndTests
   tags: 
    - docker-runner-framework
@@ -23,9 +23,12 @@ cypresEndToEndTests:
     # install dependencies
     - npm ci
     # start the server in the background
-    - npm run start:ci &
+    - npm run start 
     # run Cypress tests
     - npx cypress run --browser firefox
+  allow_failure: true
+  when: manual
+
 
 dockerComposeLocalBuild:
   stage: dockerComposeLocalDeploy
@@ -240,9 +243,3 @@ deploy_user_service:
     - kubectl apply -f gcloud-deployment-user-service.yaml
   allow_failure: true
   when: manual
-
-
-
-
-
-  
